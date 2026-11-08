@@ -1,0 +1,59 @@
+# ── MedStock Pro — repository ignore rules ─────────────────────────────────
+# The clinic receives only the BUILT app/installer, never this repository.
+# These rules keep secrets, runtime data, and build output out of git.
+
+# ── Secrets / local config ────────────────────────────────────────────────
+.env
+.env.*
+*.env
+secrets.json
+**/appsettings.Local.json
+**/appsettings.*.Local.json
+# Private license signing key — must NEVER be committed.
+license-private-key.txt
+**/license-private-key*.txt
+**/*.privatekey
+
+# ── Runtime data (production lives in %PROGRAMDATA%\MedStockPro) ───────────
+# Local dev database + WAL/SHM sidecars.
+database/
+*.db
+*.db-wal
+*.db-shm
+# Uploads, backups, logs — never version-controlled.
+**/Uploads/
+**/Backups/
+**/Logs/
+
+# ── .NET build output ─────────────────────────────────────────────────────
+**/bin/
+**/obj/
+*.user
+
+# ── Node / frontend build output ──────────────────────────────────────────
+node_modules/
+**/node_modules/
+frontend/medstockpro-frontend/dist/
+frontend/medstockpro-frontend/dist-ssr/
+
+# ── Tauri / Rust build output ─────────────────────────────────────────────
+**/src-tauri/target/
+**/src-tauri/gen/
+
+# ── Editor / OS noise ─────────────────────────────────────────────────────
+.vs/
+.idea/
+.vscode/
+.claude/
+.DS_Store
+Thumbs.db
+*.log
+
+# ── Scratch / QA helpers (not part of the product) ────────────────────────
+qa-tmp/
+
+# Private project material and local product photo collection.
+/Pic Med/
+/DentalInventory_Proposal.pdf
+/docs/project_scope.md.txt
+/.gitignore.txt
